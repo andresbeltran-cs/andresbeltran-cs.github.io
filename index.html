@@ -1,1 +1,680 @@
+```html preview
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Andres Beltran | Computer Science Portfolio</title>
 
+  <style>
+    :root {
+      --bg: #061a12;
+      --bg2: #0b2b1d;
+      --card: rgba(19, 68, 45, .72);
+      --green: #35b86b;
+      --light-green: #a9f5bd;
+      --text: #f1fff5;
+      --muted: #abc2b2;
+      --line: rgba(169,245,189,.18);
+    }
+
+    * { box-sizing: border-box; scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: Inter, Arial, sans-serif;
+      line-height: 1.6;
+      background:
+        radial-gradient(circle at 85% 0%, rgba(53,184,107,.35), transparent 30rem),
+        radial-gradient(circle at 0% 45%, rgba(23,77,54,.3), transparent 28rem),
+        linear-gradient(135deg, var(--bg), var(--bg2) 55%, #04130c);
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 7%;
+      background: rgba(6,26,18,.88);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 900;
+      font-size: 1.15rem;
+      letter-spacing: -.06em;
+    }
+
+    .brand span { color: var(--light-green); }
+
+    nav a {
+      margin-left: 24px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .9rem;
+    }
+
+    nav a:hover { color: var(--light-green); }
+
+    .nav-button {
+      margin-left: 20px;
+      padding: 8px 14px;
+      color: var(--light-green);
+      background: transparent;
+      border: 1px solid var(--light-green);
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 800;
+    }
+
+    main {
+      width: min(1150px, 86%);
+      margin: auto;
+    }
+
+    .hero {
+      min-height: 78vh;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      align-items: center;
+      gap: 60px;
+      padding: 90px 0;
+    }
+
+    .eyebrow {
+      color: var(--light-green);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 800px;
+      margin: 20px 0 25px;
+      font-size: clamp(3.5rem, 8vw, 7.5rem);
+      line-height: .9;
+      letter-spacing: -.09em;
+    }
+
+    h1 span {
+      color: transparent;
+      background: linear-gradient(110deg, var(--green), var(--light-green));
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+
+    .hero p {
+      max-width: 620px;
+      color: var(--muted);
+      font-size: 1.13rem;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 13px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 12px 18px;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 800;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      transition: .2s;
+    }
+
+    .button:hover { transform: translateY(-3px); }
+
+    .primary {
+      color: #061a12;
+      background: var(--light-green);
+      border-color: var(--light-green);
+    }
+
+    .secondary { background: rgba(255,255,255,.06); }
+
+    .identity-card {
+      position: relative;
+      min-height: 430px;
+      display: flex;
+      align-items: end;
+      overflow: hidden;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background:
+        linear-gradient(145deg, rgba(53,184,107,.72), rgba(8,39,25,.7)),
+        #103b29;
+      box-shadow: 0 30px 80px rgba(0,0,0,.3);
+    }
+
+    .identity-card::before {
+      content: "CS";
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      color: rgba(255,255,255,.1);
+      font-size: 10rem;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: -.17em;
+    }
+
+    .identity-card::after {
+      content: "⚽";
+      position: absolute;
+      top: 90px;
+      left: 55px;
+      font-size: 5rem;
+      filter: grayscale(1) brightness(2);
+      opacity: .2;
+    }
+
+    .identity-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(6,26,18,.84);
+    }
+
+    .identity-content strong {
+      display: block;
+      font-size: 1.3rem;
+    }
+
+    .identity-content small { color: var(--muted); }
+
+    section { padding: 90px 0; }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 25px;
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1;
+      letter-spacing: -.07em;
+    }
+
+    .section-heading p {
+      max-width: 480px;
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .about-grid,
+    .resume-layout {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+    }
+
+    .resume-layout {
+      grid-template-columns: .75fr 1.25fr;
+    }
+
+    .panel,
+    .resume-card,
+    .project {
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--card);
+    }
+
+    .panel p,
+    .project p,
+    .timeline p {
+      color: var(--muted);
+    }
+
+    .quick-facts {
+      display: grid;
+      gap: 12px;
+    }
+
+    .fact {
+      padding: 17px;
+      border-radius: 15px;
+      background: rgba(255,255,255,.06);
+    }
+
+    .fact small {
+      display: block;
+      color: var(--muted);
+      font-size: .78rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .fact strong { color: var(--light-green); }
+
+    .skill { margin: 18px 0; }
+
+    .skill-header {
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .bar {
+      height: 7px;
+      margin-top: 7px;
+      overflow: hidden;
+      border-radius: 20px;
+      background: rgba(255,255,255,.13);
+    }
+
+    .bar span {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--green), var(--light-green));
+    }
+
+    .timeline {
+      padding-left: 24px;
+      border-left: 2px solid var(--green);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 33px;
+    }
+
+    .timeline-item:last-child { margin-bottom: 0; }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      top: 7px;
+      left: -32px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--light-green);
+      box-shadow: 0 0 0 5px rgba(169,245,189,.13);
+    }
+
+    .timeline-date,
+    .project-number {
+      color: var(--light-green);
+      font-size: .8rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .timeline h3 { margin: 4px 0; }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 18px;
+    }
+
+    .tag {
+      padding: 5px 9px;
+      color: var(--light-green);
+      background: rgba(169,245,189,.1);
+      border-radius: 999px;
+      font-size: .75rem;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .project { transition: .2s; }
+
+    .project:hover {
+      transform: translateY(-5px);
+      border-color: rgba(169,245,189,.7);
+      background: rgba(53,184,107,.16);
+    }
+
+    .project h3 { margin-bottom: 5px; }
+
+    .contact {
+      padding: 65px 25px;
+      text-align: center;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background:
+        linear-gradient(135deg, rgba(53,184,107,.35), rgba(169,245,189,.09)),
+        #103b29;
+    }
+
+    .contact p {
+      max-width: 540px;
+      margin: 18px auto 28px;
+      color: var(--muted);
+    }
+
+    footer {
+      margin-top: 70px;
+      padding: 30px 0;
+      color: var(--muted);
+      text-align: center;
+      border-top: 1px solid var(--line);
+      font-size: .88rem;
+    }
+
+    @media (max-width: 800px) {
+      nav { padding: 16px 5%; }
+      nav a { display: none; }
+      main { width: 90%; }
+
+      .hero,
+      .about-grid,
+      .resume-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .hero { padding: 60px 0; }
+      .identity-card { min-height: 330px; }
+      .project-grid { grid-template-columns: 1fr; }
+
+      .section-heading { display: block; }
+      .section-heading p { margin-top: 15px; }
+    }
+
+    @media print {
+      nav, .hero, #projects, #contact, footer, .buttons {
+        display: none;
+      }
+
+      body {
+        color: black;
+        background: white;
+      }
+
+      main { width: 100%; }
+      section { padding: 25px 0; }
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <a class="brand" href="#top">andres<span>.</span></a>
+
+    <div>
+      <a href="#about">About</a>
+      <a href="#resume">Resume</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+      <button class="nav-button" onclick="window.print()">Print Resume</button>
+    </div>
+  </nav>
+
+  <main id="top">
+    <section class="hero">
+      <div>
+        <div class="eyebrow">Computer Science · Cybersecurity · Sports</div>
+
+        <h1>Hi, I'm <span>Andres.</span></h1>
+
+        <p>
+          I’m a sophomore Computer Science student at San Diego State University
+          with a growing interest in cybersecurity, technology, and solving
+          real-world problems. I’m currently looking for opportunities where I
+          can learn, contribute, and grow professionally.
+        </p>
+
+        <div class="buttons">
+          <a class="button primary" href="#resume">View my resume</a>
+          <a class="button secondary" href="#contact">Contact me</a>
+        </div>
+      </div>
+
+      <div class="identity-card">
+        <div class="identity-content">
+          <strong>Computer Science student focused on cybersecurity.</strong>
+          <small>Builder · Problem solver · Soccer fan</small>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="section-heading">
+        <h2>About me.</h2>
+        <p>
+          A quick introduction for employers, recruiters, and anyone interested
+          in the person behind the resume.
+        </p>
+      </div>
+
+      <div class="about-grid">
+        <div class="panel">
+          <p>
+            I’m a sophomore at San Diego State University studying Computer
+            Science. I’m developing my skills in programming, systems,
+            problem-solving, and technology, while exploring cybersecurity as a
+            potential career path.
+          </p>
+
+          <p>
+            Outside of school, I really enjoy sports—especially soccer. Sports
+            have helped me build discipline, teamwork, communication, and a
+            competitive mindset.
+          </p>
+        </div>
+
+        <div class="quick-facts">
+          <div class="fact">
+            <small>University</small>
+            <strong>San Diego State University</strong>
+          </div>
+
+          <div class="fact">
+            <small>Academic status</small>
+            <strong>Sophomore</strong>
+          </div>
+
+          <div class="fact">
+            <small>Expected graduation</small>
+            <strong>Spring 2029</strong>
+          </div>
+
+          <div class="fact">
+            <small>Career interest</small>
+            <strong>Cybersecurity</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="resume">
+      <div class="section-heading">
+        <h2>Resume snapshot.</h2>
+        <p>
+          A concise overview of my education, student organizations, interests,
+          and developing technical skills.
+        </p>
+      </div>
+
+      <div class="resume-layout">
+        <div class="resume-card">
+          <h3>Skills & Interests</h3>
+
+          <div class="skill">
+            <div class="skill-header">
+              <span>Problem Solving</span>
+              <span>90%</span>
+            </div>
+            <div class="bar"><span style="width:90%"></span></div>
+          </div>
+
+          <div class="skill">
+            <div class="skill-header">
+              <span>Programming</span>
+              <span>82%</span>
+            </div>
+            <div class="bar"><span style="width:82%"></span></div>
+          </div>
+
+          <div class="skill">
+            <div class="skill-header">
+              <span>Cybersecurity</span>
+              <span>75%</span>
+            </div>
+            <div class="bar"><span style="width:75%"></span></div>
+          </div>
+
+          <div class="skill">
+            <div class="skill-header">
+              <span>Communication</span>
+              <span>88%</span>
+            </div>
+            <div class="bar"><span style="width:88%"></span></div>
+          </div>
+
+          <h3 style="margin-top:32px;">Topics</h3>
+
+          <div class="tags">
+            <span class="tag">Computer Science</span>
+            <span class="tag">Cybersecurity</span>
+            <span class="tag">Programming</span>
+            <span class="tag">Linux</span>
+            <span class="tag">Networking</span>
+            <span class="tag">Teamwork</span>
+          </div>
+        </div>
+
+        <div class="resume-card">
+          <h3>Education & Involvement</h3>
+
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-date">Expected Spring 2029</div>
+              <h3>San Diego State University</h3>
+              <p>
+                Pursuing a degree in Computer Science. Currently building a
+                foundation in programming, computer systems, and technical
+                problem-solving.
+              </p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-date">Student Organization</div>
+              <h3>Cyber Defense Team</h3>
+              <p>
+                Participating in a student organization focused on cybersecurity
+                learning, teamwork, and defensive security concepts.
+              </p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-date">Student Organization</div>
+              <h3>WCO</h3>
+              <p>
+                Building professional experience through involvement,
+                collaboration, and participation in the SDSU community.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="section-heading">
+        <h2>What I can bring.</h2>
+        <p>
+          The qualities and interests I would bring to a technical team.
+        </p>
+      </div>
+
+      <div class="project-grid">
+        <div class="project">
+          <div class="project-number">01 / SECURITY</div>
+          <h3>Security mindset</h3>
+          <p>
+            I’m interested in understanding how systems work, where weaknesses
+            can occur, and how technology can be protected.
+          </p>
+
+          <div class="tags">
+            <span class="tag">Cybersecurity</span>
+            <span class="tag">Cyber Defense Team</span>
+          </div>
+        </div>
+
+        <div class="project">
+          <div class="project-number">02 / DEVELOPMENT</div>
+          <h3>Learning by building</h3>
+          <p>
+            I learn technical concepts best by creating projects, testing ideas,
+            and improving through practice.
+          </p>
+
+          <div class="tags">
+            <span class="tag">Coding</span>
+            <span class="tag">Computer Science</span>
+          </div>
+        </div>
+
+        <div class="project">
+          <div class="project-number">03 / TEAMWORK</div>
+          <h3>Competitive teamwork</h3>
+          <p>
+            Soccer and student organizations have helped me develop discipline,
+            communication, teamwork, and focus.
+          </p>
+
+          <div class="tags">
+            <span class="tag">Soccer</span>
+            <span class="tag">Leadership</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="contact">
+        <div class="eyebrow">Open to opportunities</div>
+        <h2>Let’s connect.</h2>
+
+        <p>
+          I’m interested in internships and entry-level opportunities related
+          to computer science, cybersecurity, IT, and technology.
+        </p>
+
+        <a class="button primary" href="mailto:beltran.andresroberto@gmail.com">
+          beltran.andresroberto@gmail.com
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 Andres Beltran · Computer Science & Cybersecurity Portfolio
+  </footer>
+</body>
+</html>
+```
